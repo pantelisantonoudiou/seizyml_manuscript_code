@@ -21,14 +21,7 @@ melted_data = pd.melt(data, id_vars=['kfold', 'norm_type', 'norm_strategy'], val
 g = sns.catplot(data=melted_data, x='norm_strategy', y='value', hue='norm_type', kind='bar',  hue_order=hue_order,
                 height=5, errorbar='se', col='variable',  col_wrap=3, sharey=False, palette=palette)
 
-# 2 MIT dataset - LOO
-data = pd.read_csv(os.path.join('data', 'trained_models', 'norm_comps', 'mit_chb', 'trained_models_loo', 'test_metrics_loo.csv'))
-data['percent_detected_seizures'] = 100*(data['detected_seizures']/data['total_seizures'])
-melted_data = pd.melt(data, id_vars=['subject', 'norm_type', 'norm_strategy'], value_vars=metrics)
-g = sns.catplot(data=melted_data, x='norm_strategy', y='value', hue='norm_type', kind='bar',  hue_order=hue_order,
-                height=5, errorbar='se', col='variable',  col_wrap=3, sharey=False, palette=palette)
-
-# 3 MIT dataset - Inter-Subject
+# 2 MIT dataset - Inter-Subject
 data = pd.read_csv(os.path.join('data', 'trained_models', 'norm_comps', 'mit_chb', 'trained_models_inter','test_metrics_inter.csv'))
 data['percent_detected_seizures'] = 100*(data['detected_seizures']/data['total_seizures'])
 melted_data = pd.melt(data, id_vars=['group', 'norm_type', 'norm_strategy'], value_vars=metrics)
