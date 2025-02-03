@@ -58,7 +58,7 @@ if __name__ == '__main__':
     # =============================================================================
     
     ### models trained on 1% no label permutation
-    model_path = os.path.join('data', 'per_file', 'trained_small_models_permute_labels')
+    model_path = os.path.join('data', 'trained_models', 'per_file', 'trained_small_models_permute_labels')
     data = pd.read_csv(os.path.join(model_path,  'test_scores.csv'))
     data['percent_dataset_size'] = data['training_fraction']*100
     data['percent_random_labels'] = (data['fraction_permuted_labels']*100 )
