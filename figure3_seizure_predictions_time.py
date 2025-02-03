@@ -22,7 +22,7 @@ if __name__ == '__main__':
 # =============================================================================
     
     # load data
-    df = pd.read_csv(os.path.join('data', 'per_file', 'trained_models', 'time_predictions.csv'))
+    df = pd.read_csv(os.path.join('data', 'trained_models', 'per_file', 'trained_models', 'time_predictions.csv'))
 
     # plot seizure prediction over time
     models = ['decision_tree', 'gaussian_nb', 'passive_aggressive', 'sgd']
@@ -51,6 +51,10 @@ if __name__ == '__main__':
     
     # plot differences
     plot_differences(df, models, bins)
+    
+    # =============================================================================
+    #                               SUPPLEMENTARY FIGURE 3
+    # =============================================================================
     
     # all feature sets
     sns.displot(data=df, x='time', bins=bins, stat='count', kind='hist', col='model_name', row='feature_set',
