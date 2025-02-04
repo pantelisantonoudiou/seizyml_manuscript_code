@@ -7,7 +7,7 @@ import pandas as pd
 from tqdm import tqdm
 ### ------------------------------------- ###
 
-def create_dataset(path, norm_func=None, norm=False,):
+def get_features(path, norm_func=None, norm=False,):
     """
       Constructs a dataset from .csv and .npz files in a specified directory.
     
@@ -49,5 +49,5 @@ def create_dataset(path, norm_func=None, norm=False,):
     x = np.concatenate(data_list, axis=0)
     y_true = np.concatenate(y_true_list)
         
-    return x, y_true
+    return x, y_true, npz_file['feature_labels']
     
