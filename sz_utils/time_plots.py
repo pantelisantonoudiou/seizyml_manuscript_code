@@ -7,7 +7,7 @@ from tqdm import tqdm
 from joblib import load
 import matplotlib.pyplot as plt
 import seaborn as sns
-from training.feature_selection import get_feature_indices
+from sz_utils.feature_selection import get_feature_indices
 sns.set(font_scale=2)
 sns.set_style("white")
 ##### ------------------------------------------------------------------- #####

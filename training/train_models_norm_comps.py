@@ -15,27 +15,8 @@ from training.grid_search import grid_search_parallel
 from sz_utils.feature_selection import select_features, get_feature_indices
 from sz_utils.test_scores import get_scores_seizure_noclean
 from sz_utils.seizure_match import dual_threshold
-from sz_utils.compile_features import get_features
+from training.train_models_basic import load_data
 ### ------------------------------------- ###
-
-def load_data(train_path, test_path, norm_func, norm_type):
-    if norm_type == 'per_file':
-        x_train_all, y_train_all, feature_labels_train = get_features(train_path, norm_func=norm_func, norm=True)
-        x_test, y_test, feature_labels_test = get_features(test_path, norm_func=norm_func, norm=True)
-    elif norm_type == 'all_file':
-        x_train_all, y_train_all, feature_labels_train = get_features(train_path, norm_func=norm_func, norm=False)
-        x_test, y_test, feature_labels_test = get_features(test_path, norm_func=norm_func, norm=False)
-        x_train_all = norm_func().fit_transform(x_train_all)
-        x_test = norm_func().fit_transform(x_test)
-    else:
-        raise Exception(f'--> Norm type did not match options (all_file/per_file) got {norm_type} instead.')
-
-    if np.all(feature_labels_train == feature_labels_test):
-        feature_labels = feature_labels_train
-    else:
-        print('Feature labels of train and test dataset do not match')
-        return x_train_all, y_train_all, x_test, y_test, None
-    return x_train_all, y_train_all, x_test, y_test, feature_labels
 
 
                         ### User Settings ###
