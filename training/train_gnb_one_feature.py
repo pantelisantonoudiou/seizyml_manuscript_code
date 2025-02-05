@@ -37,8 +37,8 @@ bins = np.arange(-time_bounds, time_bounds + 1, win)
 def run_models():
 
     # paths
-    train_path = os.path.join('data', 'features', 'train')
-    test_path = os.path.join('data', 'features', 'test')
+    train_path = os.path.join('data', 'features_mouse', 'train')
+    test_path = os.path.join('data', 'features_mouse', 'test')
     save_dir = os.path.join('data', 'plot_data')
     save_path_df = os.path.join(save_dir, 'time_predictions_gnb.csv')
     save_path_scores = os.path.join(save_dir, 'gnb_scores_one_feature.csv')

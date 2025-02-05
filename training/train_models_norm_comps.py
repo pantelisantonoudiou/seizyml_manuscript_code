@@ -36,9 +36,9 @@ hyper_params = {'gaussian_nb': {'var_smoothing': np.logspace(-2,-8, num=7)},}
 def run_models():
 
     # paths
-    model_path = os.path.join('data', 'saved_models', 'norm_comps', 'trained_models_gnb')
-    train_path = os.path.join('data', 'features', 'train')
-    test_path = os.path.join('data', 'features', 'test')
+    model_path = os.path.join('data', 'saved_models', 'norm_comps', 'trained_models_mouse')
+    train_path = os.path.join('data', 'features_mouse', 'train')
+    test_path = os.path.join('data', 'features_mouse', 'test')
     save_path = os.path.join(model_path, 'test_scores.csv')
 
     # create path if it does not exist

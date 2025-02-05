@@ -70,8 +70,8 @@ def run_models(norm_type):
     # paths
     model_path = os.path.join('data', 'saved_models', norm_type, 'trained_models_permute_labels')
     state_path =  os.path.join(model_path, 'test_scores.csv')
-    train_path = os.path.join('data', 'features', 'train')
-    test_path = os.path.join('data', 'features', 'test')
+    train_path = os.path.join('data', 'features_mouse', 'train')
+    test_path = os.path.join('data', 'features_mouse', 'test')
     
     # create path if it does not exist
     os.makedirs(model_path, exist_ok=True)

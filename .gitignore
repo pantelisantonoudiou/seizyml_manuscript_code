@@ -6,8 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
-# Large Data
-data/features/
+# Features
+data/features_mouse/
+data/features_chbmit/
 
 # Distribution / packaging
 .Python
