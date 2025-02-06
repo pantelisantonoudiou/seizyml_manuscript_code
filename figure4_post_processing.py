@@ -14,7 +14,7 @@ sns.set_style("whitegrid")
 if __name__ == '__main__':
     
     # load data
-    data = pd.read_csv(os.path.join('data', 'per_file', 'trained_models', 'post_processing.csv'))
+    data = pd.read_csv(os.path.join('data', 'trained_models', 'per_file', 'trained_models', 'post_processing.csv'))
     data['percent_seizures_detected'] = 100 * (data['detected_seizures'] / data['total_seizures'])
 
     # 1) plot anova metric
@@ -54,5 +54,6 @@ if __name__ == '__main__':
                       col_wrap=3,  hue='model_name', sharex=False, )
     for ax in g.axes.flat:
         ax.grid(True, which='both', axis='both')
+    plt.show()
 
   

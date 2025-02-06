@@ -104,5 +104,6 @@ if __name__ == '__main__':
         plt.xlabel("Percent Random Labels")
         plt.ylabel("Features")
         plt.tight_layout()
+    plt.show()
 
     

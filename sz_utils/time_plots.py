@@ -6,10 +6,7 @@ import pandas as pd
 from tqdm import tqdm
 from joblib import load
 import matplotlib.pyplot as plt
-import seaborn as sns
 from sz_utils.feature_selection import get_feature_indices
-sns.set(font_scale=2)
-sns.set_style("white")
 ##### ------------------------------------------------------------------- #####
 
 def get_szbound_hist(true_szr_idx, pred_array, bins, time_bounds):
@@ -100,8 +97,8 @@ def get_time_bins(models_df, model_path, x_test, feature_labels, true_szr_idx, b
         temp['feature_set'] = row['feature_set']
         temp['classification'] = 'ground_truth'
         df_list.append(temp)
+
     df = pd.concat(df_list)
-    
     return df
 
 def plot_differences(df, models, bins):
@@ -141,9 +138,6 @@ def plot_differences(df, models, bins):
     f_diff.supxlabel('Time (seconds)')
     f_diff.supylabel('Difference in Counts')
 
-    # return f_diff, axs_diff
-
-
 def plot_model_differences(df, models, bins):
     """
     Plots the differences in histogram counts between pairs of models.
@@ -182,41 +176,27 @@ def plot_model_differences(df, models, bins):
     return f_diff, axs_diff
 
 
+def run_time_plots():
 
+    # imports
+    from sklearn.preprocessing import StandardScaler
+    from sz_utils.seizure_match import get_szr_idx
+    from training.train_models_basic import load_data
 
+    # settings
+    win = 5
+    time_bounds = 200
+    bins = np.arange(-time_bounds, time_bounds + 1, win)
+    train_path = os.path.join('data', 'features_mouse', 'train')
+    test_path = os.path.join('data', 'features_mouse', 'test')
+    model_path = os.path.join('data', 'trained_models', 'per_file', 'trained_models')
+    models_df = pd.read_csv(os.path.join(model_path, 'selected_models.csv'))
+    save_path = os.path.join(model_path, 'time_predictions.csv')
 
-# if __name__ == '__main__':
-#     # =============================================================================
-#     #     # ## EXAMPLE ###
-#     # =============================================================================
-#     # Generate some test data
-#     data_length = 500
-#     time_bounds = 200
-#     seizures = np.array([[50, 54], [100, 107],  [150, 164], [190, 200], [250, 253],  [350, 354], [400, 404], [450, 454]])
-#     pred_array = np.zeros(data_length, dtype=bool)
-#     pred_seizures = np.array([[51, 54],[56, 58], [62, 63],  [100, 105],  [108, 110], [150, 160], [190, 200], [250, 255], [295, 304], [350, 354], [400, 404], [450, 454]])
-#     for start,stop in pred_seizures:
-#         pred_array[start:stop+1] = True
-    
-#     # get bounds
-#     bins, data_true, data_pred = get_szbound_hist(seizures, pred_array, bins, time_bounds)
-    
-#     # Plot the data
-#     plt.figure(figsize=(10, 6))
-    
-#     sns.histplot(data_true, bins=bins, label='Actual', kde=False, alpha=.5)
-#     sns.histplot(data_pred, bins=bins, label='Predicted', kde=False, alpha=.3)
-    
-#     plt.legend()
-#     plt.xlabel('Time (s)')
-#     plt.ylabel('Frequency')
-#     plt.title('Histogram of Actual vs Predicted Seizure Bounds')
-#     plt.show()
-
-
-
-
-
-
-
-
+    # laod data and get time predictions
+    print('Loading Data:')
+    _, _, x_test, y_test, feature_labels = load_data(train_path, test_path, norm_func=StandardScaler, norm_type='per_file')
+    true_szr_idx = get_szr_idx(y_test)
+    print('Calclulating Time Predictions:')
+    df = get_time_bins(models_df, model_path, x_test, feature_labels, true_szr_idx, bins, time_bounds)
+    df.to_csv(save_path, index=False)

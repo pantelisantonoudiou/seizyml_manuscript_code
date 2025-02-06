@@ -172,19 +172,3 @@ def run_models(norm_type='per_file'):
                     model_dict.update(scores)
                     state_df = pd.concat((state_df, pd.DataFrame(model_dict, index=[cntr])))
                     save_state(state_df, state_path)
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-

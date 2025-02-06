@@ -19,9 +19,9 @@ if __name__ == '__main__':
     order = ['decision_tree', 'gaussian_nb', 'passive_aggressive', 'sgd', ]
     
     # load data
-    df1 = pd.read_csv(os.path.join('data', 'all_files', 'trained_models', 'test_scores.csv'))
+    df1 = pd.read_csv(os.path.join('data', 'trained_models', 'all_files', 'trained_models', 'test_scores.csv'))
     df1['norm_type'] = 'all_files'
-    df2 = pd.read_csv(os.path.join('data', 'per_file', 'trained_models', 'test_scores.csv'))
+    df2 = pd.read_csv(os.path.join('data', 'trained_models', 'per_file', 'trained_models', 'test_scores.csv'))
     df2['norm_type'] = 'per_file'
     data = pd.concat((df1, df2), axis=0).reset_index(drop=True)
     data.loc[data['feature_type']=='_', 'feature_type'] = 'local+relative'
@@ -71,12 +71,6 @@ if __name__ == '__main__':
                     order=order, hue_order=hue_order, palette='rocket')
     g = sns.catplot(data=data, x='model_name', hue='feature_set', y='f1', kind='bar', errorbar='se',
                     order=order, hue_order=hue_order, palette='rocket')
-    data.to_csv(os.path.join('data', 'per_file', 'trained_models', 'selected_models.csv'), index=False)
-
-    
-    
-    
-    
-    
-    
-    
+    data.to_csv(os.path.join('data', 'trained_models', 'per_file', 'trained_models', 'selected_models.csv'), index=False)
+    plt.show()
+ 

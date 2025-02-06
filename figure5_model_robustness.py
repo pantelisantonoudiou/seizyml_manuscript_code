@@ -35,7 +35,7 @@ if __name__ == '__main__':
     # =============================================================================
     # load data and select post processed data and best_10 feature_set
     palette = ['#6D6E71', '#9FBCD3','#AEC4B6'] 
-    data = pd.read_csv(os.path.join('data', 'per_file','trained_models_var_size', 'test_scores_pp.csv'))
+    data = pd.read_csv(os.path.join('data', 'trained_models', 'per_file','trained_models_var_size', 'test_scores_pp.csv'))
     data['percent_dataset_size'] = data['dataset_fraction']*100
     plot_data = data.query("feature_set == 'best_10' and post_processing == True")
     
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # =============================================================================
     # load data and select post processed data and best_10 feature_set
     palette = ['#6D6E71', '#9FBCD3','#AEC4B6'] 
-    data = pd.read_csv(os.path.join('data', 'per_file','trained_models_permute_labels', 'test_scores_pp.csv'))
+    data = pd.read_csv(os.path.join('data', 'trained_models', 'per_file','trained_models_permute_labels', 'test_scores_pp.csv'))
     plot_data = pd.DataFrame(data.query("feature_set == 'best_10' and post_processing == True"))
     plot_data['percentage_permuted'] = plot_data['percentage_permuted'] + 0.1
     
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     # =============================================================================
     # load data and select post processed data and best_10 feature_set
     palette = ['#6D6E71', '#9FBCD3','#AEC4B6'] 
-    data = pd.read_csv(os.path.join('data', 'per_file','trained_small_models_permute_labels', 'test_scores_pp.csv'))
+    data = pd.read_csv(os.path.join('data', 'trained_models', 'per_file','trained_small_models_permute_labels', 'test_scores_pp.csv'))
     data['percent_dataset_size'] = data['training_fraction']*100
     data['percent_random_labels'] = (data['fraction_permuted_labels']*100 )
     plot_data = data.query("feature_set == 'best_10' and post_processing == True and percent_dataset_size == 1.0")
@@ -96,6 +96,6 @@ if __name__ == '__main__':
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles, labels, loc='upper right')
     plt.tight_layout()
-
+    plt.show()
     
     

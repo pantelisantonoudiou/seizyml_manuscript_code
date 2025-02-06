@@ -59,4 +59,4 @@ if __name__ == '__main__':
     # all feature sets
     sns.displot(data=df, x='time', bins=bins, stat='count', kind='hist', col='model_name', row='feature_set',
                 hue='classification', hue_order=['ground_truth', 'prediction'],linewidth=1, palette=['#9FBCD3','#DBB391', ])
-
+    plt.show()

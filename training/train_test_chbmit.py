@@ -124,12 +124,3 @@ def run_models():
     data = pd.DataFrame(data_list)
     data.to_csv(save_path, index=False)
 
-
-
-
-
-
-
-
-    
-    

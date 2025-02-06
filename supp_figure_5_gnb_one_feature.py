@@ -25,3 +25,4 @@ if __name__ == '__main__':
     sns.barplot(data=score_data, x='model', y='f1', errorbar='se')
     plt.figure()
     sns.histplot(data=time_data, x='time', bins=bins, stat='count', hue='classification', linewidth=1,)
+    plt.show()

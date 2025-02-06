@@ -66,7 +66,3 @@ def get_features(feature_path, norm_strategy, norm_func):
             feature_list.append({'subject':subject_folder, 'file':csv_file[:-4],'features':feature_data, 'labels':y_true})
     data = pd.DataFrame(feature_list)
     return data, npz_file['feature_labels']
-   
-    
-    
-    

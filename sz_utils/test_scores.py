@@ -4,7 +4,6 @@
 import numpy as np
 from sklearn import metrics
 from sz_utils.seizure_match import get_szr_idx, match_szrs_idx
-win = 5
 #### --------------------------------------------------------------------- ####
 
 def basic_metrics(y_true, y_pred):
@@ -57,7 +56,7 @@ def get_scores(y_true, y_pred):
         
     return scores
 
-def get_scores_seizure_noclean(y_true, y_pred):
+def get_scores_seizure_noclean(y_true, y_pred, win=5):
     """ get scores from metrics dict
     """
     
@@ -88,4 +87,3 @@ def get_scores_seizure_noclean(y_true, y_pred):
     scores.update({'percent_seizures_detected':100*ndetected/total_true})
     
     return scores
-
